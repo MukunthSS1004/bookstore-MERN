@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { TextField, Button, Typography, Box } from '@mui/material';
 
 export default function Form({ onSave, initial = null }) {
   const [title, setTitle] = useState('');
@@ -24,7 +25,7 @@ export default function Form({ onSave, initial = null }) {
       author,
       price: Number(price),
       description,
-      category
+      category,
     };
     onSave(payload);
 
@@ -43,28 +44,37 @@ export default function Form({ onSave, initial = null }) {
   };
 
   return (
-    <form className="card" onSubmit={submit} style={{ marginBottom: "20px" }}>
-      <h3>{initial ? 'Edit Book' : 'Add Book'}</h3>
+    <form onSubmit={submit} style={{ marginBottom: '20px' }}>
+      <Typography variant="h5" gutterBottom>{initial ? 'Edit Book' : 'Add Book'}</Typography>
 
-      <label>Title</label>
-      <input value={title} onChange={e => setTitle(e.target.value)} required />
+      <Box mb={2}>
+        <TextField fullWidth label="Title" variant="outlined" value={title} onChange={(e) => setTitle(e.target.value)} required/>
+      </Box>
 
-      <label>Author</label>
-      <input value={author} onChange={e => setAuthor(e.target.value)} />
+      <Box mb={2}>
+        <TextField fullWidth label="Author" variant="outlined" value={author} onChange={(e) => setAuthor(e.target.value)}/>
+      </Box>
 
-      <label>Price</label>
-      <input type="number" value={price} onChange={e => setPrice(e.target.value)} required />
+      <Box mb={2}>
+        <TextField fullWidth type="number" label="Price" variant="outlined" value={price} onChange={(e) => setPrice(e.target.value)} required />
+      </Box>
 
-      <label>Description</label>
-      <textarea value={description} onChange={e => setDescription(e.target.value)} />
+      <Box mb={2}>
+        <TextField fullWidth label="Description" variant="outlined" multiline rows={4} value={description} onChange={(e) => setDescription(e.target.value)}/>
+      </Box>
 
-      <label>Category</label>
-      <input value={category} onChange={e => setCategory(e.target.value)} />
+      <Box mb={2}>
+        <TextField fullWidth label="Category" variant="outlined" value={category} onChange={(e) => setCategory(e.target.value)}/>
+      </Box>
 
-      <div style={{ marginTop: "10px" }}>
-        <button type="submit">{initial ? 'Update' : 'Add'} Book</button>
-        <button type="button" onClick={clearForm} style={{ marginLeft: "8px" }}>Clear</button>
-      </div>
+      <Box mt={2} display="flex" gap={2}>
+        <Button variant="contained" color="primary" type="submit">
+          {initial ? 'Update' : 'Add'} Book
+        </Button>
+        <Button variant="outlined" color="secondary" onClick={clearForm}>
+          Clear
+        </Button>
+      </Box>
     </form>
   );
 }

@@ -15,22 +15,9 @@ const Home = () => {
     <div className="container">
       <h1 style={{ textAlign: "center", marginBottom: "30px" }}>📚 Book Store</h1>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: "20px",
-        }}
-      >
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "20px",}}>
         {books.map((book, index) => (
-          <div
-            key={book._id}
-            className="card"
-            style={{
-              border: `2px solid ${getRandomBorderColor(index)}`,
-              minHeight: "220px",
-            }}
-          >
+          <div key={book._id} className="card" style={{ border: `2px solid ${getRandomBorderColor(index)}`,minHeight: "220px",}}>
             <h3 style={{ marginBottom: "8px" }}>{book.title || "Untitled"}</h3>
             <p><strong>Author:</strong> {book.author || "Unknown"}</p>
             <p><strong>Price:</strong> ₹{book.price}</p>
